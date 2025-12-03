@@ -2,7 +2,7 @@
 1. ~~Day 1 – Create accounts & repo (30–60 min)~~
 2. ~~Day 2 – Learn ClickUp basics~~
 3. ~~Day 3 – First automation: Gmail → ClickUp (no Python yet)~~
-4. Day 4 – ClickUp API + Python “hello world”
+4. ~~Day 4 – ClickUp API + Python “hello world”~~
 5. Day 5 – Design your “system” on paper
 6. Day 6 – Setup notifications (Discord/Slack)
 7. Day 7 – Weekly review & cleanup
