@@ -4,7 +4,7 @@ import requests  # For making HTTP requests to ClickUp API
 import json  # For JSON data handling (if needed)
 
 # Load environment variables from .env file
-config = dotenv_values(".env")
+config = dotenv_values("../.env")
 # Retrieve ClickUp API key from environment variables
 CLICKUP_API_KEY = config.get("CLICKUP_API_KEY", "")
 
