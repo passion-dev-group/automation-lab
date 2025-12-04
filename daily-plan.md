@@ -5,7 +5,7 @@
 4. ~~Day 4 – ClickUp API + Python “hello world”~~
 5. ~~Day 5 – Design your “system” on paper~~
 6. ~~Day 6 – Setup notifications (Discord/Slack)~~
-7. Day 7 – Weekly review & cleanup
+7. ~~Day 7 – Weekly review & cleanup~~
 8. Day 8 – Improve Gmail → ClickUp automation
 9. Day 9 – Define “processing rules”
 10. Day 10 – Python: read today’s tasks from ClickUp

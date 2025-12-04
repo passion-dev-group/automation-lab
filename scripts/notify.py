@@ -20,7 +20,3 @@ def send_notification(message):
 
     return response.text
 
-
-if __name__ == "__main__":
-    send_notification("Hello, world!")
-    print("Notification sent successfully")

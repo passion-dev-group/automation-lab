@@ -16,7 +16,15 @@ By the end of this project, I’ll have a **fully working system** that automati
 5. Orchestrates everything through Zapier or Make.com  
 
 This project also serves as a **portfolio-ready showcase** of automation engineering skills — ideal for roles like:
-> 🧩 “Automation / Integration Engineer who glues tools + APIs + Python together and removes manual work.”
+> 🧩 "Automation / Integration Engineer who glues tools + APIs + Python together and removes manual work."
+
+---
+
+## 📅 Week 1 Summary
+
+- ✅ **Tools set up** — Python environment, ClickUp API, and Slack webhooks configured
+- ✅ **First automation working** — Basic integration between ClickUp and Slack notifications
+- 🎯 **Next goal:** Process & transform data with Python
 
 ---
 
