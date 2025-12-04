@@ -3,8 +3,8 @@
 2. ~~Day 2 – Learn ClickUp basics~~
 3. ~~Day 3 – First automation: Gmail → ClickUp (no Python yet)~~
 4. ~~Day 4 – ClickUp API + Python “hello world”~~
-5. Day 5 – Design your “system” on paper
-6. Day 6 – Setup notifications (Discord/Slack)
+5. ~~Day 5 – Design your “system” on paper~~
+6. ~~Day 6 – Setup notifications (Discord/Slack)~~
 7. Day 7 – Weekly review & cleanup
 8. Day 8 – Improve Gmail → ClickUp automation
 9. Day 9 – Define “processing rules”
