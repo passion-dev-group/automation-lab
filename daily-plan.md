@@ -7,7 +7,7 @@
 6. ~~Day 6 – Setup notifications (Discord/Slack)~~
 7. ~~Day 7 – Weekly review & cleanup~~
 8. ~~Day 8 – Improve Gmail → ClickUp automation~~
-9. Day 9 – Define “processing rules”
+9. ~~Day 9 – Define “processing rules”~~
 10. Day 10 – Python: read today’s tasks from ClickUp
 11. Day 11 – Python: classify & update tasks
 12. Day 12 – Python: send summary notification
