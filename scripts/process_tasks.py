@@ -1,4 +1,4 @@
-from functions import get_teams, get_spaces, get_folders, get_lists_by_space, get_lists_by_folder, get_tasks
+from functions import get_teams, get_spaces, get_folders, get_lists_by_space, get_lists_by_folder, get_tasks, get_custom_fields, update_task, set_custom_field
 from datetime import datetime, timezone
 import sys
 
@@ -87,6 +87,63 @@ def is_created_today(task):
     return date_created.date() == today
 
 
+def find_type_field_id(list_id):
+    """Find the Type custom field ID."""
+    try:
+        fields = get_custom_fields(list_id)
+        if 'fields' in fields:
+            for field in fields['fields']:
+                if field.get('name') == 'Type':
+                    return field['id']
+    except:
+        pass
+    return None
+
+
+def apply_rules(task, type_field_id):
+    """Apply processing rules to a task."""
+    task_id = task.get('id')
+    title = task.get('name', '')
+    description = task.get('description', '')
+    
+    # Rule 1: If title starts with "Lead:", set Type = Lead
+    if title.startswith('Lead:'):
+        if type_field_id:
+            try:
+                set_custom_field(task_id, type_field_id, 'Lead')
+                print(f"  ✓ Set Type = Lead")
+            except Exception as e:
+                print(f"  ✗ Error setting Type: {e}")
+    
+    # Rule 2: If title starts with "Bug:", set Type = Bug and priority = High
+    elif title.startswith('Bug:'):
+        if type_field_id:
+            try:
+                set_custom_field(task_id, type_field_id, 'Bug')
+                print(f"  ✓ Set Type = Bug")
+            except Exception as e:
+                print(f"  ✗ Error setting Type: {e}")
+        
+        try:
+            update_task(task_id, {'priority': 2})  # 2 = High priority
+            print(f"  ✓ Set priority = High")
+        except Exception as e:
+            print(f"  ✗ Error setting priority: {e}")
+    
+    # Rule 3: If description contains "urgent", add tag urgent
+    if description and 'urgent' in description.lower():
+        current_tags = task.get('tags', [])
+        tag_names = [tag.get('name', tag) if isinstance(tag, dict) else str(tag) for tag in current_tags]
+        
+        if 'urgent' not in [name.lower() for name in tag_names]:
+            try:
+                updated_tags = tag_names + ['urgent']
+                update_task(task_id, {'tags': updated_tags})
+                print(f"  ✓ Added tag 'urgent'")
+            except Exception as e:
+                print(f"  ✗ Error adding tag: {e}")
+
+
 def main():
     # Find the 'Incoming Tasks' list
     print("Searching for 'Incoming Tasks' list...")
@@ -97,6 +154,15 @@ def main():
         sys.exit(1)
     
     print(f"Found 'Incoming Tasks' list (ID: {list_id})")
+    
+    # Find Type custom field ID
+    print("Finding Type custom field...")
+    type_field_id = find_type_field_id(list_id)
+    if type_field_id:
+        print(f"Found Type field (ID: {type_field_id})")
+    else:
+        print("Warning: Type field not found")
+    
     print("\nFetching tasks...")
     
     # Get all tasks from the list
@@ -113,7 +179,7 @@ def main():
         print("\nNo tasks created today in 'Incoming Tasks' list.")
         return
     
-    # Print tasks
+    # Process tasks
     print(f"\nFound {len(today_tasks)} task(s) created today:\n")
     print("-" * 80)
     print(f"{'ID':<20} {'Name':<40} {'Status':<20}")
@@ -126,8 +192,12 @@ def main():
         status_name = status.get('status', 'N/A') if isinstance(status, dict) else str(status)
         
         print(f"{task_id:<20} {task_name:<40} {status_name:<20}")
+        
+        # Apply processing rules
+        apply_rules(task, type_field_id)
     
     print("-" * 80)
+    print("\nDone!")
 
 
 if __name__ == "__main__":

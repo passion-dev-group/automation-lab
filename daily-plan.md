@@ -9,7 +9,7 @@
 8. ~~Day 8 – Improve Gmail → ClickUp automation~~
 9. ~~Day 9 – Define “processing rules”~~
 10. ~~Day 10 – Python: read today’s tasks from ClickUp~~
-11. Day 11 – Python: classify & update tasks
+11. ~~Day 11 – Python: classify & update tasks~~
 12. Day 12 – Python: send summary notification
 13. Day 13 – Make it reusable: config & env vars
 14. Day 14 – Weekly review

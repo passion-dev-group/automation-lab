@@ -98,3 +98,51 @@ def get_tasks(list_id):
     response = requests.get(f"{CLICKUP_BASE_URL}/list/{list_id}/task", headers=headers)
     return response.json()
 
+
+def get_custom_fields(list_id):
+    """
+    Get custom fields for a list.
+    
+    Args:
+        list_id (str): The ID of the list
+        
+    Returns:
+        dict: JSON response containing custom fields
+    """
+    response = requests.get(f"{CLICKUP_BASE_URL}/list/{list_id}/field", headers=headers)
+    return response.json()
+
+
+def update_task(task_id, data):
+    """
+    Update a task.
+    
+    Args:
+        task_id (str): The ID of the task
+        data (dict): Data to update (e.g., {'priority': 2, 'tags': ['urgent']})
+        
+    Returns:
+        dict: JSON response
+    """
+    update_headers = headers.copy()
+    update_headers["Content-Type"] = "application/json"
+    response = requests.put(f"{CLICKUP_BASE_URL}/task/{task_id}", headers=update_headers, json=data)
+    return response.json()
+
+
+def set_custom_field(task_id, field_id, value):
+    """
+    Set a custom field value for a task.
+    
+    Args:
+        task_id (str): The ID of the task
+        field_id (str): The ID of the custom field
+        value: The value to set
+        
+    Returns:
+        dict: JSON response
+    """
+    update_headers = headers.copy()
+    update_headers["Content-Type"] = "application/json"
+    response = requests.post(f"{CLICKUP_BASE_URL}/task/{task_id}/field/{field_id}", headers=update_headers, json={"value": value})
+    return response.json()
